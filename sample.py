@@ -21,15 +21,15 @@ gpus = [0]
 torch.cuda.set_device('cuda:{}'.format(gpus[0]))
 def get_loader(cfg):
 
-    camo_test_dataset = instantiate_from_config(cfg.test_dataset.RGBD_rail)#数据集
+    diffrsdi_test_dataset = instantiate_from_config(cfg.test_dataset.RGBD_rail)
 
-    camo_test_loader = DataLoader(
-        camo_test_dataset,
+    diffrsdi_test_loader = DataLoader(
+        diffrsdi_test_dataset,
         batch_size=cfg.batch_size,
         collate_fn=collate
      )
 
-    return camo_test_loader
+    return diffrsdi_test_loader
 
 
 if __name__ == "__main__":
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     parser.add_argument('--gradient_accumulate_every', type=int, default=1)
     parser.add_argument('--num_workers', type=int, default=12)
     parser.add_argument('--num_sample_steps', type=int, default=10)
-    parser.add_argument('--target_dataset', nargs='+', type=str, default=['RGBD_rail'])#数据集
+    parser.add_argument('--target_dataset', nargs='+', type=str, default=['RGBD_rail'])
     parser.add_argument('--time_ensemble', action='store_true')#action='store_true'
     parser.add_argument('--batch_ensemble', action='store_true')
 
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     if cfg.num_sample_steps is not None:
         cfg.diffusion_model.params.num_sample_steps = cfg.num_sample_steps
 
-    camo_test_loader = get_loader(cfg)
+    diffrsdi_test_loader = get_loader(cfg)
 
     cond_uvit = instantiate_from_config(cfg.cond_uvit,
                                         conditioning_klass=get_obj_from_str(cfg.cond_uvit.params.conditioning_klass))
@@ -80,11 +80,11 @@ if __name__ == "__main__":
     )
 
     trainer.load(pretrained_path=cfg.checkpoint)
-    camo_test_loader= \
-        trainer.accelerator.prepare(camo_test_loader)
+    diffrsdi_test_loader= \
+        trainer.accelerator.prepare(diffrsdi_test_loader)
 
     dataset_map = {
-        'RGBD_rail': camo_test_loader,
+        'RGBD_rail': diffrsdi_test_loader,
     }
     assert all([d_name in dataset_map.keys() for d_name in cfg.target_dataset]), \
         f'Invalid dataset name. Available dataset: {dataset_map.keys()}' \
@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
     for dataset, dataset_name in target_dataset:
         trainer.model.eval()
-        mask_path = Path(cfg.test_dataset.RGBD_rail.params.image_root).parent.parent#s11111数据集
+        mask_path = Path(cfg.test_dataset.RGBD_rail.params.image_root).parent.parent
         save_to = Path(cfg.results_folder) / dataset_name
         os.makedirs(save_to, exist_ok=True)
         mae, _ = trainer.val(model=trainer.model,

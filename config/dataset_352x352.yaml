@@ -1,30 +1,6 @@
 train_dataset:
   name: dataset.data_val.PolypObjDataset
-#  params:
-#    image_root: './DUT-RGBD/train_data/train_images/'
-#    depth_root: './DUT-RGBD/train_data/train_depth/'
-#    gt_root: './DUT-RGBD/train_data/train_masks/'
-#    trainsize: 352
-#  params:
-#    image_root: './NJUD/train_data/train_images/'
-#    depth_root: './NJUD/train_data/train_depth/'
-#    gt_root: './NJUD/train_data/train_masks/'
-#    trainsize: 352
-#  params:
-#    image_root: './NLPR/train_data/train_images/'
-#    depth_root: './NLPR/train_data/train_depth/'
-#    gt_root: './NLPR/train_data/train_masks/'
-#    trainsize: 352
-#  params:
-#    image_root: './NLPR/train_data/train_images/'
-#    depth_root: './NLPR/train_data/train_depth/'
-#    gt_root: './NLPR/train_data/train_masks/'
-#    trainsize: 352
-#  params:
-#    image_root: './ReDWeb-S/trainset/RGB/'
-#    depth_root: './ReDWeb-S/trainset/depth/'
-#    gt_root: './ReDWeb-S/trainset/GT/'
-#    trainsize: 352
+
   params:
     image_root: './RGBD_rail_datasets/train/rgb_png/'
     depth_root: './RGBD_rail_datasets/train/d_png/'
@@ -36,24 +12,7 @@ train_dataset:
 #    trainsize: 352
 
 test_dataset:
-#  COD10K:
-#    name: dataset.data_val.test_dataset
-#    params:
-#      image_root: './RGBD_rail_datasets/test/RGBD_rail/rgb-test_png/'
-#      depth_root: './RGBD_rail_datasets/test/RGBD_rail/d-test_png/'
-#      gt_root: './RGBD_rail_datasets/test/RGBD_rail/gt-test/'
-#      testsize: 352
-#    params:
-#      image_root: './COD/Test/CAMO/Imgs/'
-#      gt_root: './COD/Test/CAMO/GT/'
-#      testsize: 352
-#  CAMO:
-#    name: dataset.data_val.test_dataset
-#    params:
-#      image_root: './DUT-RGBD-400x600/test/RGBD_rail/rgb-test_png/'
-#      depth_root: './DUT-RGBD-400x600/test/RGBD_rail/d-test_png/'
-#      gt_root: './DUT-RGBD-400x600/test/RGBD_rail/gt-test/'
-#      testsize: 352
+
   REDweb:
     name: dataset.data_val.test_dataset
     params:
@@ -90,22 +49,3 @@ test_dataset:
       depth_root: './RGBD_rail_datasets/test/RGBD_rail/d-test_png/'
       gt_root: './RGBD_rail_datasets/test/RGBD_rail/gt-test/'
       testsize: 352
-#  CHAMELEON:
-#    name: dataset.data_val.test_dataset
-#    params:
-#      image_root: './DUT-RGBD-400x600/test/RGBD_rail/rgb-test_png/'
-#      depth_root: './DUT-RGBD-400x600/test/RGBD_rail/d-test_png/'
-#      gt_root: './DUT-RGBD-400x600/test/RGBD_rail/gt-test/'
-#      testsize: 352
-#  NC4K:
-#    name: dataset.data_val.test_dataset
-#    params:
-#      image_root: './DUT-RGBD-400x600/test/RGBD_rail/rgb-test_png/'
-#      depth_root: './DUT-RGBD-400x600/test/RGBD_rail/d-test_png/'
-#      gt_root: './DUT-RGBD-400x600/test/RGBD_rail/gt-test/'
-#      testsize: 352
-#  CDS2K:
-#    name: dataset.cds2k_dataset.cds2K_dataset
-#    params:
-#      root: '/media/datatset/CDS2K'
-#      testsize: 352

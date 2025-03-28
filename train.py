@@ -24,7 +24,7 @@ def get_loader(cfg):
         shuffle=True,
         num_workers=cfg.num_workers)
 
-    test_dataset = instantiate_from_config(cfg.test_dataset.RGBD_rail)#111111111111111测试集
+    test_dataset = instantiate_from_config(cfg.test_dataset.RGBD_rail)
 
     test_loader = DataLoader(
         test_dataset,
